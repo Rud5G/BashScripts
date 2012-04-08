@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ ! -z "$2" ]
+then
+    echo "grep"
+    locate -i $1 | grep -i $2 | grep -v /backup/ | zmore
+else
+    locate -i $1 | grep -v /backup/ | zmore
+fi
+
+
+#_#END_FILE#_#

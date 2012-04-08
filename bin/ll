@@ -1,0 +1,39 @@
+#!/bin/bash
+clear
+
+# parameter 2 is set.
+if [ ! -z "$2" ]
+then
+    echo "grep"
+
+    R=$(ls -ahls $1 | grep -i -c $2)
+    #ls -ahls --color=auto $1 | grep -i $2 | zmore
+    ls -ahls --color=auto $1 | grep -i $2
+
+    if [ "$R" -eq 1 ]
+    then # Script needs at least one command-line argument.
+        echo "$R"
+        echo `ls $1 | grep -i $2`
+        cat `ls $1 | grep -i $2` | zmore
+    fi
+
+# parameter 2 is not set.
+else
+    R=$(ls -ahls $1 --color=auto | grep -c ".")
+    #ls -ahls $1 --color=auto | zmore
+    ls -ahls $1 --color=auto
+
+    if [ "$R" -eq 1 ]
+    then # Script needs at least one command-line argument.
+        echo "$R"
+        echo `ls $1`
+        cat `ls $1` | zmore
+    fi
+
+fi
+
+
+
+    #R=$(cat /etc/debian_version)
+
+#_#END_FILE#_#
